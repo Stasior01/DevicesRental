@@ -1,0 +1,31 @@
+﻿@using Wypozyczalnia.Application.Devices
+@model List<DeviceDto>
+
+<h1>Unavailable Devices</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Device Brand</th>
+            <th>Model</th>
+            <th>Daily Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var device in Model)
+        {
+            <tr>
+                <td>@device.Brand</td>
+                <td>@device.Model</td>
+                <td>@device.DailyPrice</td>
+                <td>
+                    <form asp-controller="Devices" asp-action="UnlockDevice" method="post">
+                        <input type="hidden" name="deviceId" value="@device.DeviceId" />
+                        <button type="submit" class="btn btn-success">Unlock</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

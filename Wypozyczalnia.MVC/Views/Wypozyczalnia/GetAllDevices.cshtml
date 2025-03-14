@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Wypozyczalnia.Application.Devices.DeviceDto>
+
+<h1>Devices List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Production Year</th>
+            <th>Daily Price</th>
+            <th>Availability</th>
+            <th>Rent</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var device in Model)
+        {
+            <tr>
+                <td>@device.Type</td>
+                <td>@device.Brand</td>
+                <td>@device.Model</td>
+                <td>@device.ProductionYear?.ToString("yyyy")</td>
+                <td>$ @device.DailyPrice</td>
+                @if (@device.Availability == true)
+                {
+                    <td>available</td>
+                }
+                else
+                {
+                    <td>Not Available</td>
+                }
+                <td>
+                <a asp-controller="Wypozyczalnia" asp-action="RentDevice" asp-route-id="@device.DeviceId" class="btn btn-primary">Rent</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

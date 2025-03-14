@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Wypozyczalnia.Application.Reservations.ReservationDto>
+
+<h1>Reservation List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>User Email</th>
+            <th>Device ID</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>@reservation.StartDate?.ToString("yyyy-MM-dd")</td>
+                <td>@reservation.EndDate?.ToString("yyyy-MM-dd")</td>
+                <td>@reservation.Status</td>
+                <td>@reservation.UserEmail</td>
+                <td>@reservation.DeviceId</td>
+                <td>$ @reservation.TotalPrice.ToString("F2")</td>
+            </tr>
+        }
+    </tbody>
+</table>
